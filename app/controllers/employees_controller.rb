@@ -10,7 +10,7 @@ class EmployeesController < ApplicationController
   before_action :apply_strong_params, only: [:create, :update]
 
   def index
-    render_jsonapi(Employee.all)
+    render_jsonapi EmployeeSearch.new
   end
 
   def show
