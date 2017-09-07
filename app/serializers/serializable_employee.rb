@@ -7,5 +7,7 @@ class SerializableEmployee < JSONAPI::Serializable::Resource
   attribute :created_at
   attribute :updated_at
 
+  extra_attribute :meeting_duration
+
   has_many :positions
 end

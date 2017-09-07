@@ -2,6 +2,18 @@ class EmployeeResource < ApplicationResource
   type :employees
   model Employee
 
+  extra_field :meeting_duration do |scope|
+    scope.with_meeting_duration
+  end
+
+  sort do |scope, att, dir|
+    if att == :meeting_duration
+      scope.with_meeting_duration.order("meeting_duration #{dir}")
+    else
+      scope.order(att => dir)
+    end
+  end
+
   has_many :positions,
     scope: -> { Position.all },
     foreign_key: :employee_id,
