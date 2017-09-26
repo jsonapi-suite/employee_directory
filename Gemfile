@@ -9,7 +9,7 @@ end
 gem 'rails', '5.1.3'
 gem 'pg'
 gem 'puma', '~> 3.0'
-gem 'jsonapi_suite', '~> 0.6'
+gem 'jsonapi_suite'
 gem 'jsonapi-rails', '~> 0.1'
 gem 'jsonapi_spec_helpers', '~> 0.4', require: false
 gem 'jsonapi_swagger_helpers', '~> 0.4', require: false

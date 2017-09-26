@@ -1,4 +1,9 @@
 StrongResources.configure do
+  strong_resource :room do
+    # Your attributes go here, e.g.
+    # attribute :name, :string
+  end
+
   strong_param :object,
     swagger: :object,
     type: ActionController::Parameters.map

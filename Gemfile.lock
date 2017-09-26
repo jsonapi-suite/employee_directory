@@ -73,7 +73,7 @@ GEM
     jsonapi-renderer (0.1.3)
     jsonapi-serializable (0.2.1)
       jsonapi-renderer (~> 0.1, >= 0.1.3)
-    jsonapi_compliable (0.7.7)
+    jsonapi_compliable (0.8.0)
       jsonapi-serializable (~> 0.2.0)
     jsonapi_errorable (0.6.2)
       jsonapi-serializable (~> 0.1)
@@ -206,7 +206,7 @@ DEPENDENCIES
   faker
   jsonapi-rails (~> 0.1)
   jsonapi_spec_helpers (~> 0.4)
-  jsonapi_suite (~> 0.6)
+  jsonapi_suite
   jsonapi_swagger_helpers (~> 0.4)
   kaminari (~> 0.17)
   listen (~> 3.0.5)

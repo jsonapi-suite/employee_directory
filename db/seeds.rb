@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+[Employee, Department, Room, Position].each(&:delete_all)
+department = Department.create! name: 'safety'
+
+department.rooms.create! name: 'Room 101'
+
+e = Employee.create! first_name: 'Homer',
+  last_name: 'Simpson',
+  department: department
+e.positions.create! title: 'inspector'

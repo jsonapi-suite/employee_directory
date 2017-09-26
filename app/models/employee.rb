@@ -1,4 +1,5 @@
 class Employee < ApplicationRecord
+  belongs_to :department
   has_many :positions
   validates :first_name, presence: true
 
