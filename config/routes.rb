@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   scope path: '/api' do
     scope path: '/v1' do
       resources :employees
