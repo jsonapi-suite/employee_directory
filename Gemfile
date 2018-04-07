@@ -14,6 +14,7 @@ gem 'jsonapi-rails', '~> 0.3'
 gem 'kaminari', '~> 0.17'
 gem 'faker' # db/seeds.rb
 gem 'jsonapi_spec_helpers', '~> 0.4'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'pry'
