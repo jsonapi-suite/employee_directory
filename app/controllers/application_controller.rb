@@ -1,3 +1,4 @@
 class ApplicationController < ActionController::API
-  include JsonapiSuite::ControllerMixin
+  include JsonapiCompliable::Rails
+  include JsonapiCompliable::Responders
 end

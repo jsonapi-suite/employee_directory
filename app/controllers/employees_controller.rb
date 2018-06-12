@@ -1,46 +1,41 @@
 class EmployeesController < ApplicationController
-  jsonapi resource: EmployeeResource
-
-  strong_resource :employee do
-    has_many :positions, destroy: true do
-      belongs_to :department, destroy: true
-    end
-  end
-
-  before_action :apply_strong_params, only: [:create, :update]
-
   def index
-    render_jsonapi(Employee.all)
+    employees = EmployeeResource.all(params)
+    respond_with employees
   end
 
   def show
-    scope = jsonapi_scope(Employee.where(id: params[:id]))
-    render_jsonapi(scope.resolve.first, scope: false)
+    employee = EmployeeResource.find(params)
+    respond_with employee
   end
 
   def create
-    employee, success = jsonapi_create.to_a
+    employee = EmployeeResource.build(params)
 
-    if success
-      render_jsonapi(employee, scope: false)
+    if employee.save
+      respond_with employee
     else
-      render_errors_for(employee)
+      render jsonapi_errors: employee
     end
   end
 
   def update
-    employee, success = jsonapi_update.to_a
+    employee = EmployeeResource.find(params)
 
-    if success
-      render_jsonapi(employee, scope: false)
+    if employee.update_attributes
+      respond_with employee
     else
-      render_errors_for(employee)
+      render jsonapi_errors: employee
     end
   end
 
   def destroy
-    employee = Employee.find(params[:id])
-    employee.destroy
-    render_jsonapi(employee, scope: false)
+    employee = EmployeeResource.find(params)
+
+    if employee.destroy
+      respond_with employee
+    else
+      render jsonapi_errors: employee
+    end
   end
 end

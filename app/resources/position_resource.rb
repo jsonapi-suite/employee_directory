@@ -1,13 +1,18 @@
 class PositionResource < ApplicationResource
-  type :positions
-  model Position
+  attribute :employee_id, :integer, only: [:writable, :filterable]
+  attribute :department_id, :integer, only: [:writable]
 
-  allow_filter :title_prefix do |scope, value|
-    scope.where(["title LIKE ?", "#{value}%"])
+  attribute :title, :string
+
+  belongs_to :employee
+  belongs_to :department
+
+  filter :current, :boolean do
+    eq do |scope, value|
+      value.each do |v|
+        scope = scope.current(v)
+      end
+      scope
+    end
   end
-
-  belongs_to :department,
-    scope: -> { Department.all },
-    foreign_key: :department_id,
-    resource: DepartmentResource
 end

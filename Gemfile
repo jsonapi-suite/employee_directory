@@ -6,12 +6,12 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.2.0'
 gem 'pg'
 gem 'puma', '~> 3.0'
-gem 'jsonapi_suite', '~> 0.6'
-gem 'jsonapi-rails', '~> 0.1'
-gem 'kaminari', '~> 0.17'
+gem 'jsonapi_compliable', '>= 1.0.alpha.2'
+gem 'kaminari', '~> 1.1.1'
+gem 'responders'
 
 group :development, :test do
   gem 'faker'
@@ -31,6 +31,7 @@ group :test do
   gem 'database_cleaner', '~> 1.5'
   gem "factory_girl_rails", "~> 4.0"
   gem 'faker'
+  gem 'jsonapi_spec_helpers', '>= 1.0.alpha.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

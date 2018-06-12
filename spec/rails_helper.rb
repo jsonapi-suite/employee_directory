@@ -3,14 +3,15 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
-require 'jsonapi_spec_helpers'
+require 'jsonapi_spec_helpers/rspec'
 
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-  config.include JsonapiSpecHelpers
+  config.include JsonapiSpecHelpers::RSpec
+  config.include JsonapiSpecHelpers::Sugar
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:suite) do
@@ -26,20 +27,5 @@ RSpec.configure do |config|
     ensure
       DatabaseCleaner.clean
     end
-  end
-
-  def json_headers
-    {
-      'CONTENT_TYPE' => 'application/json',
-      'ACCEPT' => 'application/json'
-    }
-  end
-
-  def json_post(url, payload)
-    post url, params: payload.to_json, headers: json_headers
-  end
-
-  def json_put(url, payload)
-    put url, params: payload.to_json, headers: json_headers
   end
 end

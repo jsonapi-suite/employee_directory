@@ -1,4 +1,5 @@
 class DepartmentResource < ApplicationResource
-  type :departments
-  model Department
+  attribute :name, :string
+
+  has_many :positions
 end
