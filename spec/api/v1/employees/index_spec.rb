@@ -13,6 +13,19 @@ RSpec.describe 'v1/employees#index', type: :request do
   end
 
   describe 'sideloading' do
+    context 'positions then employees again' do
+      let!(:employee1) { create(:employee) }
+      let!(:employee2) { create(:employee) }
+
+      let!(:position1) { create(:position, employee: employee1) }
+      let!(:position2) { create(:position, employee: employee2) }
+
+      it 'works' do
+        get '/api/v1/employees', include: 'positions.employees'
+        binding.pry
+      end
+    end
+
     context 'when sideloading positions and departments' do
       let!(:employee)    { create(:employee) }
       let!(:position2)   { create(:position, employee_id: nil) }
